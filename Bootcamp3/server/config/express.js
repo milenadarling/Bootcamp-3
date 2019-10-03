@@ -32,7 +32,7 @@ module.exports.init = function() {
      use the listings router middleware for requests to the api 
      check the variables list above
   */
-  app.use('/api/listings');
+  app.use('/api/listings', listingsRouter);
 
 
    /* Request Handler for coordinates
@@ -46,7 +46,6 @@ module.exports.init = function() {
      Sends a response (res) to go to the homepage for all routes not specified */ 
   app.all('/*', function(req, res) {
    
-    app.use(express.static('public'))
    /*Add YOUR CODE HERE 
       see https://expressjs.com/en/api.html#res.sendFile
       see https://nodejs.org/api/path.html
@@ -54,7 +53,7 @@ module.exports.init = function() {
       If no path segments are passed, path.resolve() will return the absolute path of the current working directory.
    */
 
-   res.sendFile(path.resolve('client/index.html'));
+   res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
   });
   
   return app;
